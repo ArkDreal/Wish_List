@@ -53,7 +53,23 @@ export default class DesejosEUsuarios extends React.Component{
                     <section>
                         <h2>Lista de tipos de desejos</h2>
                         <table>
-                            
+                            <thead>
+                                <tr>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.listaTiposDesejos.map((tipoDesejo) => {
+                                        return(
+                                            <tr key>
+                                                <td></td>
+                                                <td></td>
+                                            <tr/>
+                                        )
+                                    )}
+                                }
+                            </tbody>
                         </table>
                     </section>
                     

@@ -5,11 +5,7 @@ export default class DesejosEUsuarios extends React.Component{
         super(props)
         this.state = {
             listaTiposDesejos : [],
-            listaUsuarios : [],
-            titulo : '',
-            descricao : '',
-            email : '',
-            senha : ''
+            titulo : ''
         };
     }
 
@@ -22,7 +18,6 @@ export default class DesejosEUsuarios extends React.Component{
             method: 'POST',
             body: JSON.stringify({
                 tituloTipoDesejo : this.state.titulo,
-                descricaoTipoDesejo : this.state.descricao 
             }),
             headers: { "Content-Type" : "application/json"}
         })
@@ -32,32 +27,23 @@ export default class DesejosEUsuarios extends React.Component{
         .catch(error => console.log(error))
     }
 
-    atualizaStateDesejo = async (desejos) => {
-        await this.setState({titulo : desejos.target.value})
+    atualizaStateDesejo = async (desejo) => {
+        await this.setState({titulo : desejo.target.value})
+        console.log(this.state.titulo)
     }
-    
-    cadastrarUsuario(usuario){
-        usuario.preventDefault()
 
-        fetch('http://localhost:5000/api/Usuario', {
+    buscarTipoDesejo = () => {
+        fetch('http://localhost:5000/api/TipoDesejo')
+        
+        .then( resposta => resposta.json())
 
-            method: 'POST',
-            body: JSON.stringify({
-                nomeUsuario : this.state.titulo,
-                email : this.state.descricao,
-                senha : this.state.senha 
-            }),
-            headers: { "Content-Type" : "application/json"}
-        })
-
-        .then(console.log("Usuario cadastro."))
+        .then( dados => this.setState({listaTiposDesejos : dados}))
 
         .catch(error => console.log(error))
-
     }
 
     componentDidMount(){
-        
+        this.buscarTipoDesejo()
     }
 
     render(){
@@ -80,44 +66,9 @@ export default class DesejosEUsuarios extends React.Component{
                                 placeholder = "Nome do desejo"
                                 onChange = {this.atualizaStateDesejo} />
 
-                                <input type = "text"
-                                value = {this.titulo}
-                                placeholder = "Descrição"
-                                onChange = {this.atualizaStateDesejo} />
-
                                 <button type = "submit"> Cadastrar </button>
                             </div>
 
-                        </form>
-                    </section>
-
-                    <section>
-                        <h2>Lista de usuarios</h2>
-                        <table>
-
-                        </table>
-                    </section>
-                    <section>
-                        <h2>Crie um usuario</h2>
-                        <form onSubmit = {this.cadastrarUsuario}>
-                            <div>
-                                <input type = "text"
-                                value = {this.titulo}
-                                placeholder = "nome"
-                                onChange = {this.atualizaStateUsuario}/>
-
-                                <input type = "email"
-                                value = {this.titulo}
-                                placeholder = "senha"
-                                onChange = {this.atualizaStateUsuario}/>
-
-                                <input type = "text"
-                                value = {this.titulo}
-                                placeholder = "senha"
-                                onChange = {this.atualizaStateUsuario}/>
-
-                                <button type = "submit"> Cadastrar </button>
-                            </div>
                         </form>
                     </section>
                 </main>

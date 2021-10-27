@@ -62,12 +62,11 @@ export default class DesejosEUsuarios extends React.Component{
                                 {
                                     this.state.listaTiposDesejos.map((tipoDesejo) => {
                                         return(
-                                            <tr key>
+                                            <tr>
                                                 <td></td>
                                                 <td></td>
                                             <tr/>
-                                        )
-                                    )}
+                                        )})
                                 }
                             </tbody>
                         </table>

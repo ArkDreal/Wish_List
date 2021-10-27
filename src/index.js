@@ -10,7 +10,7 @@ import Home from './Pages/Home/App';
 
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+const routing = (
   <Router>
     <div>
       <Switch>
@@ -21,6 +21,11 @@ ReactDOM.render(
     </div>
   </Router>
 );
+
+ReactDOM.render(
+  routing,
+  document.getElementById('root')
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

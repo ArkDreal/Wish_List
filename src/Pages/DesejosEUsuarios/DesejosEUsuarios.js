@@ -31,6 +31,10 @@ export default class DesejosEUsuarios extends React.Component{
 
         .catch(error => console.log(error))
     }
+
+    atualizaStateDesejo = async (desejos) => {
+        await this.setState({titulo : desejos.target.value})
+    }
     
     cadastrarUsuario(usuario){
         usuario.preventDefault()
